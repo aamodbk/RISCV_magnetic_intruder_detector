@@ -14,6 +14,8 @@ This DIY project utilizes magnetic reed switches, LEDs and a piezo-electric buzz
 
 ## Block Diagram
 
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/blockdiagram.png)
+
 ## C code
 
 ## Assembly code

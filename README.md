@@ -27,21 +27,20 @@ This DIY project utilizes magnetic reed switches, LEDs and a piezo-electric buzz
 #define LED2 32
 #define BUZZER 64
 
-int ledpin_val[3] = {0xFFFFFFF7, 0xFFFFFFEF, 0xFFFFFFDF};   // LED0 - 11111111111111111111111111110111
+int main()
+{
+    int ledpin_val[3] = {0xFFFFFFF7, 0xFFFFFFEF, 0xFFFFFFDF};   // LED0 - 11111111111111111111111111110111
                                                             // LED1 - 11111111111111111111111111101111
                                                             // LED2 - 11111111111111111111111111011111
 
-int buzzerpin_val = 0xFFFFFFBF;   // BUZZ - 11111111111111111111111110111111
+    int buzzerpin_val = 0xFFFFFFBF;   // BUZZ - 11111111111111111111111110111111
 
-// Output pins
-int buzzerpin = 0;
-int ledpin[3] = {0};
+    // Output pins
+    int buzzerpin = 0;
+    int ledpin[3] = {0};
 
-// Input pins 
-int magpin[3] = {0};
-
-int main()
-{
+    // Input pins 
+    int magpin[3] = {0};
 
     while(1){
         // Read from the magnetic reed switches
@@ -157,125 +156,112 @@ int main()
 
 ```
 
-intruder_detector:     file format elf32-littleriscv
+out:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
 
 00010074 <main>:
-   10074:	ff010113          	addi	sp,sp,-16
-   10078:	00812623          	sw	s0,12(sp)
-   1007c:	01010413          	addi	s0,sp,16
-   10080:	001f7713          	andi	a4,t5,1
-   10084:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   10088:	00e7a023          	sw	a4,0(a5)
-   1008c:	002f7713          	andi	a4,t5,2
-   10090:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   10094:	00e7a223          	sw	a4,4(a5)
-   10098:	004f7713          	andi	a4,t5,4
-   1009c:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   100a0:	00e7a423          	sw	a4,8(a5)
-   100a4:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   100a8:	0007a783          	lw	a5,0(a5)
-   100ac:	02079c63          	bnez	a5,100e4 <main+0x70>
-   100b0:	00100713          	li	a4,1
-   100b4:	80e1a823          	sw	a4,-2032(gp) # 11200 <_edata>
-   100b8:	80c1a783          	lw	a5,-2036(gp) # 111fc <buzzerpin_val>
-   100bc:	00ff7f33          	and	t5,t5,a5
-   100c0:	040f6f13          	ori	t5,t5,64
-   100c4:	81418793          	addi	a5,gp,-2028 # 11204 <ledpin>
-   100c8:	00100713          	li	a4,1
-   100cc:	00e7a023          	sw	a4,0(a5)
-   100d0:	000117b7          	lui	a5,0x11
-   100d4:	1f078793          	addi	a5,a5,496 # 111f0 <ledpin_val>
-   100d8:	0007a783          	lw	a5,0(a5)
-   100dc:	00ff7f33          	and	t5,t5,a5
-   100e0:	008f6f13          	ori	t5,t5,8
-   100e4:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   100e8:	0047a783          	lw	a5,4(a5)
-   100ec:	02079c63          	bnez	a5,10124 <main+0xb0>
-   100f0:	00100713          	li	a4,1
-   100f4:	80e1a823          	sw	a4,-2032(gp) # 11200 <_edata>
-   100f8:	80c1a783          	lw	a5,-2036(gp) # 111fc <buzzerpin_val>
+   10074:	fc010113          	add	sp,sp,-64
+   10078:	02812e23          	sw	s0,60(sp)
+   1007c:	04010413          	add	s0,sp,64
+   10080:	ff700793          	li	a5,-9
+   10084:	fcf42e23          	sw	a5,-36(s0)
+   10088:	fef00793          	li	a5,-17
+   1008c:	fef42023          	sw	a5,-32(s0)
+   10090:	fdf00793          	li	a5,-33
+   10094:	fef42223          	sw	a5,-28(s0)
+   10098:	fbf00793          	li	a5,-65
+   1009c:	fef42623          	sw	a5,-20(s0)
+   100a0:	fe042423          	sw	zero,-24(s0)
+   100a4:	fc042823          	sw	zero,-48(s0)
+   100a8:	fc042a23          	sw	zero,-44(s0)
+   100ac:	fc042c23          	sw	zero,-40(s0)
+   100b0:	fc042223          	sw	zero,-60(s0)
+   100b4:	fc042423          	sw	zero,-56(s0)
+   100b8:	fc042623          	sw	zero,-52(s0)
+   100bc:	001f7793          	and	a5,t5,1
+   100c0:	fcf42223          	sw	a5,-60(s0)
+   100c4:	002f7793          	and	a5,t5,2
+   100c8:	fcf42423          	sw	a5,-56(s0)
+   100cc:	004f7793          	and	a5,t5,4
+   100d0:	fcf42623          	sw	a5,-52(s0)
+   100d4:	fc442783          	lw	a5,-60(s0)
+   100d8:	02079663          	bnez	a5,10104 <main+0x90>
+   100dc:	00100793          	li	a5,1
+   100e0:	fef42423          	sw	a5,-24(s0)
+   100e4:	fec42783          	lw	a5,-20(s0)
+   100e8:	00ff7f33          	and	t5,t5,a5
+   100ec:	040f6f13          	or	t5,t5,64
+   100f0:	00100793          	li	a5,1
+   100f4:	fcf42823          	sw	a5,-48(s0)
+   100f8:	fdc42783          	lw	a5,-36(s0)
    100fc:	00ff7f33          	and	t5,t5,a5
-   10100:	040f6f13          	ori	t5,t5,64
-   10104:	81418793          	addi	a5,gp,-2028 # 11204 <ledpin>
-   10108:	00100713          	li	a4,1
-   1010c:	00e7a223          	sw	a4,4(a5)
-   10110:	000117b7          	lui	a5,0x11
-   10114:	1f078793          	addi	a5,a5,496 # 111f0 <ledpin_val>
-   10118:	0047a783          	lw	a5,4(a5)
-   1011c:	00ff7f33          	and	t5,t5,a5
-   10120:	010f6f13          	ori	t5,t5,16
-   10124:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   10128:	0087a783          	lw	a5,8(a5)
-   1012c:	02079c63          	bnez	a5,10164 <main+0xf0>
-   10130:	00100713          	li	a4,1
-   10134:	80e1a823          	sw	a4,-2032(gp) # 11200 <_edata>
-   10138:	80c1a783          	lw	a5,-2036(gp) # 111fc <buzzerpin_val>
-   1013c:	00ff7f33          	and	t5,t5,a5
-   10140:	040f6f13          	ori	t5,t5,64
-   10144:	81418793          	addi	a5,gp,-2028 # 11204 <ledpin>
-   10148:	00100713          	li	a4,1
-   1014c:	00e7a423          	sw	a4,8(a5)
-   10150:	000117b7          	lui	a5,0x11
-   10154:	1f078793          	addi	a5,a5,496 # 111f0 <ledpin_val>
-   10158:	0087a783          	lw	a5,8(a5)
+   10100:	008f6f13          	or	t5,t5,8
+   10104:	fc842783          	lw	a5,-56(s0)
+   10108:	02079663          	bnez	a5,10134 <main+0xc0>
+   1010c:	00100793          	li	a5,1
+   10110:	fef42423          	sw	a5,-24(s0)
+   10114:	fec42783          	lw	a5,-20(s0)
+   10118:	00ff7f33          	and	t5,t5,a5
+   1011c:	040f6f13          	or	t5,t5,64
+   10120:	00100793          	li	a5,1
+   10124:	fcf42a23          	sw	a5,-44(s0)
+   10128:	fe042783          	lw	a5,-32(s0)
+   1012c:	00ff7f33          	and	t5,t5,a5
+   10130:	010f6f13          	or	t5,t5,16
+   10134:	fcc42783          	lw	a5,-52(s0)
+   10138:	02079663          	bnez	a5,10164 <main+0xf0>
+   1013c:	00100793          	li	a5,1
+   10140:	fef42423          	sw	a5,-24(s0)
+   10144:	fec42783          	lw	a5,-20(s0)
+   10148:	00ff7f33          	and	t5,t5,a5
+   1014c:	040f6f13          	or	t5,t5,64
+   10150:	00100793          	li	a5,1
+   10154:	fcf42c23          	sw	a5,-40(s0)
+   10158:	fe442783          	lw	a5,-28(s0)
    1015c:	00ff7f33          	and	t5,t5,a5
-   10160:	020f6f13          	ori	t5,t5,32
-   10164:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   10168:	0007a783          	lw	a5,0(a5)
-   1016c:	f0078ae3          	beqz	a5,10080 <main+0xc>
-   10170:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   10174:	0047a783          	lw	a5,4(a5)
-   10178:	f00784e3          	beqz	a5,10080 <main+0xc>
-   1017c:	82018793          	addi	a5,gp,-2016 # 11210 <magpin>
-   10180:	0087a783          	lw	a5,8(a5)
-   10184:	ee078ee3          	beqz	a5,10080 <main+0xc>
-   10188:	8001a823          	sw	zero,-2032(gp) # 11200 <_edata>
-   1018c:	80c1a783          	lw	a5,-2036(gp) # 111fc <buzzerpin_val>
-   10190:	00ff7f33          	and	t5,t5,a5
-   10194:	000f6f13          	ori	t5,t5,0
-   10198:	81418793          	addi	a5,gp,-2028 # 11204 <ledpin>
-   1019c:	0007a023          	sw	zero,0(a5)
-   101a0:	81418793          	addi	a5,gp,-2028 # 11204 <ledpin>
-   101a4:	0007a223          	sw	zero,4(a5)
-   101a8:	81418793          	addi	a5,gp,-2028 # 11204 <ledpin>
-   101ac:	0007a423          	sw	zero,8(a5)
-   101b0:	000117b7          	lui	a5,0x11
-   101b4:	1f078793          	addi	a5,a5,496 # 111f0 <ledpin_val>
-   101b8:	0007a783          	lw	a5,0(a5)
-   101bc:	00ff7f33          	and	t5,t5,a5
-   101c0:	000f6f13          	ori	t5,t5,0
-   101c4:	000117b7          	lui	a5,0x11
-   101c8:	1f078793          	addi	a5,a5,496 # 111f0 <ledpin_val>
-   101cc:	0047a783          	lw	a5,4(a5)
-   101d0:	00ff7f33          	and	t5,t5,a5
-   101d4:	000f6f13          	ori	t5,t5,0
-   101d8:	000117b7          	lui	a5,0x11
-   101dc:	1f078793          	addi	a5,a5,496 # 111f0 <ledpin_val>
-   101e0:	0087a783          	lw	a5,8(a5)
-   101e4:	00ff7f33          	and	t5,t5,a5
-   101e8:	000f6f13          	ori	t5,t5,0
-   101ec:	e95ff06f          	j	10080 <main+0xc>
+   10160:	020f6f13          	or	t5,t5,32
+   10164:	fc442783          	lw	a5,-60(s0)
+   10168:	f4078ae3          	beqz	a5,100bc <main+0x48>
+   1016c:	fc842783          	lw	a5,-56(s0)
+   10170:	f40786e3          	beqz	a5,100bc <main+0x48>
+   10174:	fcc42783          	lw	a5,-52(s0)
+   10178:	f40782e3          	beqz	a5,100bc <main+0x48>
+   1017c:	fe042423          	sw	zero,-24(s0)
+   10180:	fec42783          	lw	a5,-20(s0)
+   10184:	00ff7f33          	and	t5,t5,a5
+   10188:	000f6f13          	or	t5,t5,0
+   1018c:	fc042823          	sw	zero,-48(s0)
+   10190:	fc042a23          	sw	zero,-44(s0)
+   10194:	fc042c23          	sw	zero,-40(s0)
+   10198:	fdc42783          	lw	a5,-36(s0)
+   1019c:	00ff7f33          	and	t5,t5,a5
+   101a0:	000f6f13          	or	t5,t5,0
+   101a4:	fe042783          	lw	a5,-32(s0)
+   101a8:	00ff7f33          	and	t5,t5,a5
+   101ac:	000f6f13          	or	t5,t5,0
+   101b0:	fe442783          	lw	a5,-28(s0)
+   101b4:	00ff7f33          	and	t5,t5,a5
+   101b8:	000f6f13          	or	t5,t5,0
+   101bc:	f01ff06f          	j	100bc <main+0x48>
+
 ```
 
 ## Unique Instructions
 
 ```
-Number of different instructions: 11
+Number of different instructions: 9
 List of unique instructions:
-li
-bnez
-lui
-and
-sw
-andi
-beqz
-j
+add
 lw
-addi
-ori
+sw
+beqz
+or
+bnez
+j
+li
+and
 ```
 
 ## References

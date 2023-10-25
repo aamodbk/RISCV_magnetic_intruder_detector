@@ -261,6 +261,7 @@ Disassembly of section .text:
 Using the python script `instr_counter.py`, the following unique instructions are observed:
 
 ```
+Number of different instructions: 10
 List of unique instructions:
 beqz
 j

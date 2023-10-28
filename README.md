@@ -275,5 +275,253 @@ lw
 sw
 ```
 
+## Spike Simulation
+The following code is used for spike simulation:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int test0, test1, test2, test3;
+
+    int ledpin_mask[3] = {0xFFFFFFF7,   // LED0 - 11111111111111111111111111110111
+                            0xFFFFFFEF,     // LED1 - 11111111111111111111111111101111
+                            0xFFFFFFDF};    // LED2 - 11111111111111111111111111011111
+
+    int buzzerpin_mask = 0xFFFFFFBF;   // BUZZ - 11111111111111111111111110111111
+    
+    // Output pins
+    int buzzerpin = 0;
+    int ledpin[3] = {0};
+
+    // Input pins 
+    int magpin[3] = {0};
+
+    // Registers for each outputs
+    int buzzer_reg;
+    int led_reg[3];
+
+    buzzerpin = 0;
+    buzzer_reg = buzzerpin*64;
+    asm volatile (
+        "and x30, x30, %0\n\t"
+        "or x30, x30, %1"       //BUZZER
+        :
+        :"r"(buzzerpin_mask), "r"(buzzer_reg)
+        :"x30"
+    );
+    ledpin[0] = 0;
+    led_reg[0] = ledpin[0]*8;
+    ledpin[1] = 0;
+    led_reg[1] = ledpin[1]*16;
+    ledpin[2] = 0;
+    led_reg[2] = ledpin[2]*32;
+    asm volatile (
+        "and x30, x30, %0\n\t"
+        "or x30, x30, %1"         //LED0
+        :
+        :"r"(ledpin_mask[0]), "r"(led_reg[0])
+        :"x30"
+    );
+    asm volatile (
+        "and x30, x30, %0\n\t"
+        "or x30, x30, %1"         //LED1
+        :
+        :"r"(ledpin_mask[1]), "r"(led_reg[1])
+        :"x30"
+    );
+    asm volatile (
+        "and x30, x30, %0\n\t"
+        "or x30, x30, %1"         //LED2
+        :
+        :"r"(ledpin_mask[2]), "r"(led_reg[2])
+        :"x30"
+    );
+    asm volatile (
+            "addi %0, x30, 0\n\t"
+            :"=r"(test0)
+            :
+            :"x30"
+    	);
+    	printf("\nx30 reg value in setup = %d\n", test0);
+    printf("During Setup: Buzzer = %d, LED0 = %d, LED1 = %d, LED2 = %d\n", buzzerpin, ledpin[0], ledpin[1], ledpin[2]);
+
+    for(int i=0; i<1; i++){
+    // while(1){
+        // Read from the magnetic reed switches
+        asm volatile (
+            "andi %0, x30, 1"        //MAG0
+            : "=r"(magpin[0])
+        );
+
+        asm volatile (
+            "andi %0, x30, 2"        //MAG1
+            : "=r"(magpin[1])
+        );
+
+        asm volatile (
+            "andi %0, x30, 4"        //MAG2
+            : "=r"(magpin[2])
+        );
+
+        asm volatile (
+            "addi %0, x30, 0\n\t"
+            :"=r"(test1)
+            :
+            :"x30"
+    	);
+    	printf("\nx30 reg value before = %d\n", test1);
+        magpin[0] = 0;
+        magpin[1] = 0;
+        magpin[2] = 0;
+
+        if(!magpin[0]){
+            buzzerpin = 1;
+            buzzer_reg = buzzerpin*64;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"       //BUZZER
+                :
+                :"r"(buzzerpin_mask), "r"(buzzer_reg)
+                :"x30"
+            );
+            ledpin[0] = 1;
+            led_reg[0] = ledpin[0]*8;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"         //LED0
+                :
+                :"r"(ledpin_mask[0]), "r"(led_reg[0])
+                :"x30"
+            );
+        }
+        if(!magpin[1]){
+            buzzerpin = 1;
+            buzzer_reg = buzzerpin*64;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"       //BUZZER
+                :
+                :"r"(buzzerpin_mask), "r"(buzzer_reg)
+                :"x30"
+            );
+            ledpin[1] = 1;
+            led_reg[1] = ledpin[1]*16;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"         //LED1
+                :
+                :"r"(ledpin_mask[1]), "r"(led_reg[1])
+                :"x30"
+            );
+        }
+        if(!magpin[2]){
+            buzzerpin = 1;
+            buzzer_reg = buzzerpin*64;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"       //BUZZER
+                :
+                :"r"(buzzerpin_mask), "r"(buzzer_reg)
+                :"x30"
+            );
+            ledpin[2] = 1;
+            led_reg[2] = ledpin[2]*32;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"         //LED2
+                :
+                :"r"(ledpin_mask[2]), "r"(led_reg[2])
+                :"x30"
+            );
+        }
+
+        if(magpin[0] && magpin[1] && magpin[2]){
+            buzzerpin = 0;
+            buzzer_reg = buzzerpin*64;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"       //BUZZER
+                :
+                :"r"(buzzerpin_mask), "r"(buzzer_reg)
+                :"x30"
+            );
+            ledpin[0] = 0;
+            led_reg[0] = ledpin[0]*8;
+            ledpin[1] = 0;
+            led_reg[1] = ledpin[1]*16;
+            ledpin[2] = 0;
+            led_reg[2] = ledpin[2]*32;
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"         //LED0
+                :
+                :"r"(ledpin_mask[0]), "r"(led_reg[0])
+                :"x30"
+            );
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"         //LED1
+                :
+                :"r"(ledpin_mask[1]), "r"(led_reg[1])
+                :"x30"
+            );
+            asm volatile (
+                "and x30, x30, %0\n\t"
+                "or x30, x30, %1"         //LED2
+                :
+                :"r"(ledpin_mask[2]), "r"(led_reg[2])
+                :"x30"
+            );
+        }
+
+        asm volatile(
+            "addi %0, x30, 0\n\t"
+            :"=r"(test2)
+            :
+            :"x30"
+        );
+        printf("\nx30 reg value after = %d\n", test2);
+
+        printf("After one loop: Buzzer = %d, LED0 = %d, LED1 = %d, LED2 = %d\n", buzzerpin, ledpin[0], ledpin[1], ledpin[2]);
+    }
+
+    return 0;
+}
+```
+
+The above code is compiled and simulated with teh following commands:
+
+```
+riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out intruder_detector.c
+spike $(which pk) out
+```
+
+Here different set of inputs are given for magpins. The outputs for all of them are correct as observed below:
+
+For magpins = {1, 1, 1}:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/magpin111.png)
+
+For magpins = {0, 1, 1}:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/magpin011.png)
+
+For magpins = {1, 0, 1}:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/magpin101.png)
+
+For magpins = {1, 1, 0}:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/magpin110.png)
+
+For magpins = {0, 0, 0}:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/magpin000.png)
+
+Similarly the outputs of the x30 register is verfied for all other combinations.
+
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

@@ -673,5 +673,31 @@ For magpins = {0, 0, 0}:
 
 Similarly the outputs of the x30 register is verfied for all other combinations.
 
+## Functional Verification in GTKWave
+Functional simulation is done in GTKWave and it's output waveform is shown below:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/allgtk.png)
+
+The below image shows the example where the last magpin is 0 and the rest are 1. As seen in the output the buzzerpin and the ledpin[0] is turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk1.png)
+
+The below image shows the example where the magpin[1] is 0 and the rest are 1. As seen in the output the buzzerpin and the ledpin[1] is turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk2.png)
+
+The below image shows the example where the last magpin[2] is 0 and the rest are 1. As seen in the output the buzzerpin and the ledpin[2] is turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk3.png)
+
+The below image shows the example where all the magpins are 0. As seen in the output the buzzerpin and all the ledpins are turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk4.png)
+
+The below image shows that the instruction number 0x00EF6F33 is executed after which the output pin value is changed. This is expected since the instruction is `or x30, x30, x14`.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtkinstcheck.png)
+
+
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

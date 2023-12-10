@@ -743,6 +743,9 @@ The below image shows the example where all the magpins are 0. As seen in the ou
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk4gls.png)
 
+Below image shows the generated .dot file for the wrapper module.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/dotfile.png)
 
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

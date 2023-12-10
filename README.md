@@ -811,6 +811,19 @@ run_placement
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/placement_openlane.png)
 
+To view the placement: Magic is invoked after moving to the results/placement directory,then use the following command:
+```
+magic -T /home/aamod/Stoodies/wslfiles/Sem-7/Intruder_Detector/vsdstdcelldesign/libs/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/placement_magic.png)
+
+To perform Clock Tree Synthesis, run the following command:
+```
+run_cts
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/cts_openlane.png)
 
 
 ## References

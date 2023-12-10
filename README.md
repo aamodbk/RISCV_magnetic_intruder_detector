@@ -794,7 +794,7 @@ To view the floorplan: Magic is invoked after moving to the results/floorplan di
 magic -T /home/aamod/Stoodies/wslfiles/Sem-7/Intruder_Detector/vsdstdcelldesign/libs/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
 ```
 
-![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/floorplan_magic.png)
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/floorplanmagic.png)
 
 Die area past floorplan is:
 
@@ -816,7 +816,7 @@ To view the placement: Magic is invoked after moving to the results/placement di
 magic -T /home/aamod/Stoodies/wslfiles/Sem-7/Intruder_Detector/vsdstdcelldesign/libs/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
 ```
 
-![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/placement_magic.png)
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/placementmagic.png)
 
 To perform Clock Tree Synthesis, run the following command:
 ```

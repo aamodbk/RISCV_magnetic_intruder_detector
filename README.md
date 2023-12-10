@@ -747,5 +747,52 @@ Below image shows the generated .dot file for the wrapper module.
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/dotfile.png)
 
+### Introduction to OpenLane
+Open-source chip development has become more accessible with the availability of RTL designs and EDA tools at no cost. The SKY130 PDK, a collaboration between Skywater Technologies and Google, plays a crucial role in this by offering an open-source platform. Initially, the design flow was unclear, and the SKY130 PDK was only compatible with industrial equipment. To address these issues, the OpenLane project was introduced. OpenLane is an automated RTL to GDSII flow that streamlines the chip design process. It's not a product but a collection of EDA tools, scripts, and optimized Skywater PDKs designed for use with open-source EDA tools.
+
+### Overall Design Flow
+The RTL to GDSII flow encompasses several essential stages in digital chip design. 
+* It commences with RTL design, capturing the circuit's functional behavior.
+* RTL synthesis transforms this into a gate-level netlist, optimizing for area, power, and timing.
+* Floor and power planning partition the chip's area, establish layout dimensions, and determine power distribution.
+* Placement assigns physical coordinates to cells, aiming to minimize wirelength and optimize signal delay.
+* Clock tree synthesis constructs an efficient clock distribution network, and routing connects components while adhering to design rules.
+* Sign-off includes comprehensive verification.
+* And finally, GDSII file generation produces the format for fabrication, containing geometric and mask details.
+
+To include the requirements in the design keep your file structure as follows:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/designfolder.png)
+
+To prep the design and run flow in interactive mode type the following in Openlane terminal:
+```
+./flow.tcl -interactive
+% package require openlane 0.9
+% prep -design wrapper -verbose 99
+```
+
+Now to run synthesis, type the following:
+```
+run_synthesis
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/synth_openlane.png)
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/synth_rpt.png)
+
+Next, to run floorplan, type the following:
+```
+run_synthesis
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/floorplan_openlane.png)
+
+Post the floorplan run, a .def file will have been created within the results/floorplan directory. We may review floorplan files by checking the floorplan.tcl.
+
+To view the floorplan: Magic is invoked after moving to the results/floorplan directory,then use the following command:
+```
+magic -T /home/aamod/Stoodies/wslfiles/Sem-7/Intruder_Detector/vsdstdcelldesign/libs/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+```
+
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

@@ -698,6 +698,51 @@ The below image shows that the instruction number 0x00EF6F33 is executed after w
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtkinstcheck.png)
 
+## Synthesis
+Synthesis transforms the simple RTL design into a gate-level netlist with all the constraints as specified by the designer. In simple language, Synthesis is a process that converts the abstract form of design to a properly implemented chip in terms of logic gates.
+
+Synthesis takes place in multiple steps:
+
+* Converting RTL into simple logic gates.
+* Mapping those gates to actual technology-dependent logic gates available in the technology libraries.
+* Optimizing the mapped netlist keeping the constraints set by the designer intact.
+
+## Gate Level Simulation
+For the purposes of GLS testing, a separate synthesized processor verilog code was generated through Yosys using the following steps:
+
+```
+read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80_256.lib 
+read_verilog processor.v 
+synth -top wrapper
+dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80_256.lib 
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80_256.lib
+write_verilog synth_processor_test.v
+```
+
+The below commands were used to compile and simulate the synthesized netlist:
+
+```
+iverilog -o test synth_processor_test.v testbench.v sky130_sram_1kbyte_1rw1r_32x256_8.v sky130_fd_sc_hd.v primitives.v
+gtkwave waveform.vcd
+```
+The outputs of GLS observed for different inputs are as follows:
+
+The below image shows the example where the last magpin is 0 and the rest are 1. As seen in the output the buzzerpin and the ledpin[0] is turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk1gls.png)
+
+The below image shows the example where the magpin[1] is 0 and the rest are 1. As seen in the output the buzzerpin and the ledpin[1] is turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk2gls.png)
+
+The below image shows the example where the last magpin[2] is 0 and the rest are 1. As seen in the output the buzzerpin and the ledpin[2] is turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk3gls.png)
+
+The below image shows the example where all the magpins are 0. As seen in the output the buzzerpin and all the ledpins are turned on as expected.
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/gtk4gls.png)
+
 
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

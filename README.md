@@ -794,5 +794,24 @@ To view the floorplan: Magic is invoked after moving to the results/floorplan di
 magic -T /home/aamod/Stoodies/wslfiles/Sem-7/Intruder_Detector/vsdstdcelldesign/libs/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
 ```
 
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/floorplan_magic.png)
+
+Die area past floorplan is:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/dieareafloorplan.png)
+
+Core area post floorplan is:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/coreareafloorplan.png)
+
+Type in the following command to run the placement:
+```
+run_placement
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/placement_openlane.png)
+
+
+
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

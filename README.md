@@ -782,7 +782,7 @@ run_synthesis
 
 Next, to run floorplan, type the following:
 ```
-run_synthesis
+run_floorplan
 ```
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/floorplan_openlane.png)
@@ -832,6 +832,25 @@ Timing reports post CTS:
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingcts2.png)
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingcts3.png)
+
+Area reports post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/areacts.png)
+
+Skew report post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/skewcts.png)
+
+Power report post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/powercts.png)
+
+To implement routing between standard cells using the remaining available metal layers after CTS and PDN generation, run the following command:
+```
+run_routing
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/routing_openlane.png)
 
 
 ## References

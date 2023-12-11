@@ -825,6 +825,14 @@ run_cts
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/cts_openlane.png)
 
+Timing reports post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingcts1.png)
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingcts2.png)
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingcts3.png)
+
 
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

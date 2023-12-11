@@ -890,10 +890,10 @@ As seen below, number of DRC violations is zero:
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/violations.png)
 
 ### Performance Calculation
-Given a clock period of 50ns set in the config file, we get a setup slack of 13.88 ns after routing. Hence,
+Given a clock period of 50 ns set in the config file, we get a setup slack of 13.88 ns after routing. Hence,
 ```
-                              1
-Max Performance =  ------------------------
+                                  1
+Max Performance =  -------------------------------
                      clock period - slack(setup)
 ```
 

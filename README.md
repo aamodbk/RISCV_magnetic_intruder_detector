@@ -852,6 +852,55 @@ run_routing
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/routing_openlane.png)
 
+To view the routing: Magic is invoked after moving to the results/routing directory,then use the following command:
+```
+magic -T /home/aamod/Stoodies/wslfiles/Sem-7/Intruder_Detector/vsdstdcelldesign/libs/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+```
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/routingmagic.png)
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/routingmagic2.png)
+
+Area of Design:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/areamagic.png)
+
+Timing reports post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingrout1.png)
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingrout2.png)
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingrout3.png)
+
+Area reports post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/arearout.png)
+
+Skew report post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/skewrout.png)
+
+Power report post CTS:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/powerrout.png)
+
+As seen below, number of DRC violations is zero:
+
+![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/violations.png)
+
+### Performance Calculation
+Given a clock period of 50ns set in the config file, we get a setup slack of 13.88 ns after routing. Hence,
+```
+                              1
+Max Performance =  ------------------------
+                     clock period - slack(setup)
+```
+
+```
+Max Performance = 27.685 Mhz
+```
+
 
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main

@@ -865,7 +865,7 @@ Area of Design:
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/areamagic.png)
 
-Timing reports post CTS:
+Timing reports post routing:
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingrout1.png)
 
@@ -873,15 +873,15 @@ Timing reports post CTS:
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/timingrout3.png)
 
-Area reports post CTS:
+Area reports post routing:
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/arearout.png)
 
-Skew report post CTS:
+Skew report post routing:
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/skewrout.png)
 
-Power report post CTS:
+Power report post routing:
 
 ![alt text](https://github.com/aamodbk/RISCV_magnetic_intruder_detector/blob/main/powerrout.png)
 

@@ -901,6 +901,9 @@ Max Performance =  -------------------------------
 Max Performance = 27.685 Mhz
 ```
 
+The link given below leads to the Openlane RUNS folder containing all the results of the flow:
+
+
 ## Acknowledgement
 * Kunal Ghosh, VSD Corp. Pvt. Ltd.
 * Mayank Kabra,Founder,Chipcron Pvt.Ltd.

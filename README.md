@@ -901,6 +901,16 @@ Max Performance =  -------------------------------
 Max Performance = 27.685 Mhz
 ```
 
+## Acknowledgement
+* Kunal Ghosh, VSD Corp. Pvt. Ltd.
+* Mayank Kabra,Founder,Chipcron Pvt.Ltd.
+* Alwin Shaju, IIIT-B
+* Kanish R, IIIT-B
+* Skywater Foundry
 
 ## References
 1. https://github.com/SakethGajawada/RISCV_GNU/tree/main
+2. https://github.com/The-OpenROAD-Project/OpenSTA.git
+3. https://www.vsdiat.com
+4. https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop/tree/main
+5. https://github.com/kunalg123/riscv_workshop_collaterals
